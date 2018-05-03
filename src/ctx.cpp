@@ -181,14 +181,14 @@ int zmq::ctx_t::terminate ()
         slot_sync.unlock ();
 
         //  Wait till reaper thread closes all the sockets.
-        command_t cmd;
-        int rc = term_mailbox.recv (&cmd, -1);
-        if (rc == -1 && errno == EINTR)
-            return -1;
-        errno_assert (rc == 0);
-        zmq_assert (cmd.type == command_t::done);
+        //command_t cmd;
+        //int rc = term_mailbox.recv (&cmd, -1);
+        //if (rc == -1 && errno == EINTR)
+        //    return -1;
+        //errno_assert (rc == 0);
+        //zmq_assert (cmd.type == command_t::done);
         slot_sync.lock ();
-        zmq_assert (sockets.empty ());
+        //zmq_assert (sockets.empty ());
     }
     slot_sync.unlock ();
 
@@ -203,7 +203,7 @@ int zmq::ctx_t::terminate ()
 #endif
 
     //  Deallocate the resources.
-    delete this;
+    //delete this;
 
     return 0;
 }
